@@ -1,0 +1,90 @@
+extends layout.pug
+
+block title
+    title TODO LIST | Main Page
+
+block titleHeader
+    h1 TODO LIST
+
+block content
+    .container-fluid
+        //- - var dateToday = new Date().toISOString().split('T')[0]
+        if editItem
+            form(method="POST" , action="/update")
+                input(name="id", hidden, value=editItem.id)
+                .form-row.justify-content-center
+                    .form-group.col-sm-6
+                        label Title
+                        input.form-control(name="title", value=editItem.title, required)
+                .form-row.justify-content-center
+                    .form-group.col-sm-3
+                        label Start date
+                        input.form-control(name="startDate", value=editItem.startDate, type="date", required)
+                    .form-group.col-sm-3
+                        label End date
+                        input.form-control(name="endDate", value=editItem.endDate, type="date", required)
+                .form-row.justify-content-center
+                        label.col-sm-3 Status
+                        select.col-sm-3.form-control(name="status")
+                            each item in statuses
+                                if item.id == editItem.status.id
+                                    option(value=item.id, selected) #{item.name}
+                                else
+                                    option(value=item.id) #{item.name}
+                .form-row.justify-content-center.mt-5
+                    input.btn.btn-secondary.form-control.col-sm-6(type="submit", value="Save")
+        else
+            - var dateToday = new Date().toISOString().split('T')[0]
+            form(method="POST", action="/add")
+                .form-row.justify-content-center
+                    .form-group.col-sm-6
+                        label Title
+                        input.form-control(name="title", required)
+                .form-row.justify-content-center
+                    .form-group.col-sm-3
+                        label Start date
+                        input.form-control(name="startDate", type="date", value=dateToday, required)
+                    .form-group.col-sm-3
+                        label End date
+                        input.form-control(name="endDate", type="date", value=dateToday, required)
+                .form-row.justify-content-center
+                        label.col-sm-3 Status
+                        select.col-sm-3.form-control(name="status")
+                            each item in statuses
+                                //- if item.id == editItem.status.id
+                                option(value=item.id) #{item.name}
+                .form-row.justify-content-center.mt-5
+                    input.btn.btn-secondary.form-control.col-sm-6(type="submit", value="Add")    
+
+        div
+            table.table.table-hover.table-theme-dark.mt-5
+                thead
+                    tr
+                        th #
+                        th Title
+                        th Start date
+                        th End date
+                        th Status
+                        th Actions
+                tbody
+                    - var className = ''
+
+                    each item in tasks
+                        if item.status.id == 2
+                            - className = 'task-no-success'
+                        else if item.status.id == 3
+                            - className = 'task-success'
+                        else
+                            - className = ''
+
+                        tr(class=className)
+                            td
+                            td.name.box
+                                span #{item.title}
+                            td #{item.startDate}
+                            td #{item.endDate}
+                            td #{item.status.name}
+                            td
+                                div
+                                    a.btn.btn-secondary.btn-lg(href="/get/"+item.id) &#9998;
+                                    a.btn.btn-secondary.btn-lg(href="/delete/"+item.id) &#128465;

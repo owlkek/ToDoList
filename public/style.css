@@ -1,0 +1,29 @@
+/* #region css-counter */
+tbody {
+    counter-reset: myCounter;
+}
+
+tbody tr {
+    counter-increment: myCounter;
+}
+
+tbody tr td:first-child::before {
+    content: counter(myCounter);
+    font-weight: 900;
+}
+/* #endregion */
+
+tbody tr td{
+    word-break: break-all;
+    vertical-align: middle;
+}
+.table .name {
+    max-width: 30vh;
+}
+.table .task-success {
+    background: #20c997;
+}
+
+.table .task-no-success {
+    background: #ffc107;
+}
