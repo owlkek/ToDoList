@@ -22,42 +22,45 @@ block content
                     td
                     td Get all tasks
                     td GET
-                    td
+                    td 
                         a(href="/api/tasks") /api/tasks
                     td JSON for Request
                     td JSON RESULT
-                        p [ { id, name, dateStart, dateEnd, status: { id, name } } ]
+                        p [ { id, name, dateStart, dateEnd, status: {id, name } } ]
                 tr
+                    td
                     td Get all tasks
                     td GET
-                    td
+                    td 
                         a(href="/api/tasks?{id}") /api/tasks?{id}
                     td JSON for Request
                         p id
                     td JSON RESULT
-                        p { id, name, dateStart, dateEnd, statud: { id, name } }
+                        p  { id, name, dateStart, dateEnd, status: {id, name } } 
                 tr
                     td
                     td Create task
                     td POST
-                    td /api/tasks
+                    td /api/tasks         
                     td JSON for Request
-                        p { id, name, dateStart, dateEnd, status: { id, name } }
+                        p { id, name, dateStart, dateEnd, status } 
+                    td JSON RESULT
+                        p  { id, name, dateStart, dateEnd, status: {id, name } } 
                 tr
                     td
                     td Update task
                     td PUT
-                    td /api/tasks
+                    td /api/tasks         
                     td JSON for Request
-                        p { id, name, dateStart, dateEnd, status }
+                        p { id, name, dateStart, dateEnd, status } 
                     td JSON RESULT
-                        p { id, name, dateStart, dateEnd, status: { id, name } }
+                        p  { id, name, dateStart, dateEnd, status: {id, name } }
                 tr
                     td
                     td Delete task
                     td DELETE
-                    td /api/tasks?{id}
+                    td /api/tasks?{id}        
                     td JSON for Request
                         p id
-                    rd JSON RESULT
-                        p { id, name, dateStart, dateEnd, status: { id, nsme } }
+                    td JSON RESULT
+                        p  { id, name, dateStart, dateEnd, status: {id, name } }
