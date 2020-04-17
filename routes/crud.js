@@ -24,8 +24,8 @@ exports.add = (r, q) => {
         q.redirect('/');
         });
         console.log(Date().toLocaleString().substr(16,8)  + " добавлена запись");
-
     });
+    db.Logs("добавлена запись", Date().toLocaleString().substr(16,8));
 }
 
 exports.update = (r, q) => {
@@ -37,12 +37,15 @@ exports.update = (r, q) => {
         });
         console.log(Date().toLocaleString().substr(16,8) +" изменена запись");
     });
+    db.Logs("изменена запись", Date().toLocaleString().substr(16,8));
+
 };
 
 exports.delete = (r, q) => {
     db.removeTask(+r.params.id).then(x => {        
      q.redirect('/');
      console.log(Date().toLocaleString().substr(16,8)  + " удалена запись");
-
     });
+    db.Logs("удалена запись ", Date().toLocaleString().substr(16,8));
+    
 };

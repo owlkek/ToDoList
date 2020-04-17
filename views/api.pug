@@ -1,0 +1,63 @@
+extends layout.pug
+
+block title
+    title TODO LIST | API
+
+block titleHeader
+    h1 API
+
+block content
+    .container-fluid
+        table.table
+            thead
+                tr
+                    th #
+                    th Name
+                    th Method
+                    th URL
+                    th Request
+                    th Result
+            tbody
+                tr
+                    td
+                    td Get all tasks
+                    td GET
+                    td
+                        a(href="/api/tasks") /api/tasks
+                    td JSON for Request
+                    td JSON RESULT
+                        p [ { id, name, dateStart, dateEnd, status: { id, name } } ]
+                tr
+                    td Get all tasks
+                    td GET
+                    td
+                        a(href="/api/tasks?{id}") /api/tasks?{id}
+                    td JSON for Request
+                        p id
+                    td JSON RESULT
+                        p { id, name, dateStart, dateEnd, statud: { id, name } }
+                tr
+                    td
+                    td Create task
+                    td POST
+                    td /api/tasks
+                    td JSON for Request
+                        p { id, name, dateStart, dateEnd, status: { id, name } }
+                tr
+                    td
+                    td Update task
+                    td PUT
+                    td /api/tasks
+                    td JSON for Request
+                        p { id, name, dateStart, dateEnd, status }
+                    td JSON RESULT
+                        p { id, name, dateStart, dateEnd, status: { id, name } }
+                tr
+                    td
+                    td Delete task
+                    td DELETE
+                    td /api/tasks?{id}
+                    td JSON for Request
+                        p id
+                    rd JSON RESULT
+                        p { id, name, dateStart, dateEnd, status: { id, nsme } }
